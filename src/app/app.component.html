@@ -1,10 +1,16 @@
 <nav class="navbar navbar-custom px-5 py-3">
   <div class="d-flex align-items-center">
     <img class="movie-reel-icon me-3" src="assets/movie-reel-cinema-tool.svg" alt="Movies" />
-    <a style="color: white !important" class="navbar-brand font-weight-bold p-0" routerLink="/">
+    <a class="navbar-brand font-weight-bold p-0 color-white" routerLink="/">
       NG MOVIES
     </a>
   </div>
-  <div style="color: white;">TESTE</div>
+  <div>
+    <button routerLink="/search" routerLinkActive="button-active" type="button"
+      class="btn font-weight-bold color-white">
+      <fa-icon [icon]="['fas', 'search']"></fa-icon>
+      SEARCH A MOVIE
+    </button>
+  </div>
 </nav>
 <router-outlet></router-outlet>

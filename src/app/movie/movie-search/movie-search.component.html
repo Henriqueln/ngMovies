@@ -1,0 +1,23 @@
+<div class="background px-5 d-flex justify-content-center">
+    <div class="form-group d-flex flex-column" style="width: 60%;">
+        <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+            <div class="mt-4">
+                <label for="titleInput">Title</label>
+                <input type="text" class="form-control" id="titleInput" formControlName="title">
+            </div>
+            <div class="mt-2">
+                <label for="typeInput">Type</label>
+                <select class="form-select" id="typeInput" formControlName="type"> 
+                    <option *ngFor="let type of movieTypes" [ngValue]="type.type" >{{type.name}}</option>
+                </select>
+            </div>
+            <div class="mt-2">
+                <label for="yearInput">Year of release</label>
+                <input type="number" class="form-control" id="yearInput" formControlName="year">
+            </div>
+            <div class="mt-4">
+                <button style="width: 100%;" type="submit" class="btn submit-button color-white" [disabled]="!movieForm.valid">Primary</button>
+            </div>
+        </form>
+    </div>
+</div>
