@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Movie } from '../movie';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-movie-search',
@@ -9,24 +11,31 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class MovieSearchComponent implements OnInit {
 
   movieForm: FormGroup;
+  movies: Movie[];
   movieTypes = [
     {type: 'movie', name: 'Movie'},
     {type: 'series', name: 'Series'},
     {type: 'episode', name: 'Episode'}
   ];
 
-	constructor(private fb: FormBuilder) { }
+	constructor(
+    private fb: FormBuilder,
+    private movieService: MovieService
+    ) { }
 
   ngOnInit(): void {
     this.movieForm = this.fb.group({
 			title: ['', Validators.required],
-			type: ['movie', Validators.required],
-			year: ['', Validators.required],
+			type: [null],
+			year: [''],
 		});
   }
 
   onSubmit(){
-    console.log(this.movieForm);
+    const movieParams = this.movieForm.value;
+    this.movieService.getMovies(movieParams.title, movieParams.year, movieParams.type).subscribe(moviesResponse => {
+      this.movies = moviesResponse.Search;
+    });
   }
 
 }
