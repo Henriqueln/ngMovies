@@ -1,5 +1,5 @@
 <div class="background px-5 d-flex justify-content-center">
-    <div class="form-group d-flex flex-column" style="width: 60%;">
+    <div class="form-group d-flex flex-column width-60">
         <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
             <div class="mt-4">
                 <label for="titleInput">Title</label>
@@ -17,13 +17,19 @@
                 <input type="number" class="form-control" id="yearInput" formControlName="year">
             </div>
             <div class="mt-4">
-                <button style="width: 100%;" type="submit" class="btn submit-button color-white"
+                <button type="submit" class="btn submit-button color-white w-100"
                     [disabled]="!movieForm.valid">Primary</button>
             </div>
         </form>
-        <div class="mt-3">
+        <div *ngIf="movies" class="mt-3">
             <app-movies-list-table [moviesList]="movies"></app-movies-list-table>
         </div>
+        <div *ngIf="movies" class="mt-4">
+            <app-pagination (changePage)="changePage($event)" [currentPage]="currentPage"
+                [numberOfItems]="numberOfItems"></app-pagination>
+        </div>
+        <div *ngIf="error" class="alert alert-danger mt-3">
+            {{error}}
+        </div>
     </div>
-
 </div>

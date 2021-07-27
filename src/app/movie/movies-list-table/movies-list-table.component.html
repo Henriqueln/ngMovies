@@ -1,30 +1,93 @@
-<div style="background-color: white !important; padding: 5px;">
-    <table>
-        <tr  [ngClass]="isEven(i)" *ngFor="let movie of moviesList;let i = index;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <td style="width:12%" class="text-center" >
-                <img style="height: 50px;" src="{{movie.Poster}}">
-            </td>
-            <td style="width:88%">
-                {{movie.Title}} ({{movie.Year}}) ({{movie.Type}})
-            </td>
-        </tr>
-    </table>
+<div class="background">
+  <table>
+    <tr class="table-row" (click)="openDetails(movie.imdbID)" [ngClass]="isEven(i)" *ngFor="let movie of moviesList;let i = index;">
+      <td style="width:12%" class="text-center">
+        <img class="poster-small" src="{{getPosterUrl(movie.Poster)}}">
+      </td>
+      <td style="width:88%">
+        {{movie.Title}} ({{movie.Year}}) ({{movie.Type | titlecase}})
+      </td>
+    </tr>
+  </table>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div *ngIf="selectedMovie" class="modal-body">
+
+
+<div id="detailsModal" class="modal">
+  <div class="modal-content">
+    <span class="close text-end" (click)="closeModal()">&times;</span>
+    <div class="d-flex">
+      <img class="poster-big" src="{{getPosterUrl(selectedMovie?.Poster)}}">
+      <div class="d-flex flex-column ms-4">
+        <div class="modal-movie-title">
           {{selectedMovie?.Title}}
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="d-flex flex-row">
+          <div class="modal-movie-details">
+            {{selectedMovie?.Type | titlecase}},&#160;
+          </div>
+          <div class="modal-movie-details link-danger">
+            {{selectedMovie?.Year}}
+          </div>
+        </div>
+        <div class="d-flex flex-row mt-4">
+          <div class="modal-movie-details font-weight-bold">
+            Directors:&#160;
+          </div>
+          <div class="modal-movie-details link-danger">
+            {{selectedMovie?.Director}}
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div class="modal-movie-details font-weight-bold">
+            Writers:&#160;
+          </div>
+          <div class="modal-movie-details link-danger">
+            {{selectedMovie?.Writer}}
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div class="modal-movie-details font-weight-bold">
+            Actors:&#160;
+          </div>
+          <div class="modal-movie-details link-danger">
+            {{selectedMovie?.Actors}}
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div class="modal-movie-details font-weight-bold">
+            Origin:&#160;
+          </div>
+          <div class="modal-movie-details">
+            {{selectedMovie?.Country}} |&#160;
+          </div>
+          <div class="modal-movie-details font-weight-bold">
+            Language:&#160;
+          </div>
+          <div class="modal-movie-details">
+            {{selectedMovie?.Language}}
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div class="modal-movie-details font-weight-bold">
+            Genres:&#160;
+          </div>
+          <div class="modal-movie-details link-danger">
+            {{selectedMovie?.Genre}}
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div class="modal-movie-details font-weight-bold">
+            Metascore:&#160;
+          </div>
+          <div class="modal-movie-details">
+            {{selectedMovie?.Metascore}}
+          </div>
+        </div>
+        <div class="modal-movie-details mt-3">
+          {{selectedMovie?.Plot}}
         </div>
       </div>
     </div>
   </div>
+</div>

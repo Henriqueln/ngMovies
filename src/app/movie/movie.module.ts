@@ -6,6 +6,7 @@ import { MovieSearchComponent } from './movie-search/movie-search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from './movie.service';
 import { MoviesListTableComponent } from './movies-list-table/movies-list-table.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -14,9 +15,7 @@ import { MoviesListTableComponent } from './movies-list-table/movies-list-table.
     ],
     imports: [
         MovieRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        CommonModule
+        SharedModule
     ],
     providers: [
         MovieService

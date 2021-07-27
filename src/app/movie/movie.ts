@@ -1,7 +1,8 @@
 export interface MoviesList {
     Response: boolean;
+    Error: string;
     Search: Movie[];
-    TotalResults: string;
+    totalResults: string;
 }
 
 export interface Movie {
@@ -9,5 +10,13 @@ export interface Movie {
     Type: string;
     Year: string;
     Title: string;
-    imdbId: string;
+    imdbID: string;
+    Actors: string;
+    Director: string;
+    Genre: string;
+    Writer: string;
+    Language: string;
+    Country: string;
+    Plot: string;
+    Metascore: string;
 }

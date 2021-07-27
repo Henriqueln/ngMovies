@@ -8,11 +8,13 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { MovieModule } from './movie/movie.module';
 import { CommonModule } from '@angular/common';
+import { AboutMeComponent } from './about-me/about-me.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AboutMeComponent
   ],
   imports: [
     BrowserModule,

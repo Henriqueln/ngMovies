@@ -1,5 +1,5 @@
 <nav class="navbar navbar-custom px-5 py-3">
-  <div class="d-flex align-items-center">
+  <div class="d-flex align-items-center flex-grow-1">
     <img class="movie-reel-icon me-3" src="assets/movie-reel-cinema-tool.svg" alt="Movies" />
     <a class="navbar-brand font-weight-bold p-0 color-white" routerLink="/">
       NG MOVIES
@@ -10,6 +10,12 @@
       class="btn font-weight-bold color-white">
       <fa-icon [icon]="['fas', 'search']"></fa-icon>
       SEARCH A MOVIE
+    </button>
+  </div>
+  <div>
+    <button routerLink="/about-me" routerLinkActive="button-active" type="button"
+      class="btn font-weight-bold color-white">
+      ABOUT ME
     </button>
   </div>
 </nav>

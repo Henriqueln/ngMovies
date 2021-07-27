@@ -1,0 +1,26 @@
+<div class="background">
+    <nav>
+        <ul class="pagination d-flex flex-wrap justify-content-start align-items-center">
+            <div class="me-3 ms-5 page-range">
+                Showing {{getRange().min}} to {{getRange().max}} of {{numberOfItems}} entries
+            </div>
+            <li [ngClass]="isDisabledPrev()">
+                <a class="page-link border-0" (click)="updatePage(1)" tabindex="-1" aria-disabled="false">&#60;&#60;</a>
+            </li>
+            <li [ngClass]="isDisabledPrev()">
+                <a class="page-link border-0" (click)="updatePage(currentPage-1)" tabindex="-1"
+                    aria-disabled="false">&#60;</a>
+            </li>
+            <div *ngFor="let page of pages">
+                <li *ngIf="displayPage(page)" class="page-item"><a [ngClass]="isSelected(page)"
+                        class="page-link border-0" (click)="updatePage(page)">{{page}}</a></li>
+            </div>
+            <li [ngClass]="isDisabledNext()">
+                <a class="page-link border-0" (click)="updatePage(currentPage+1)">&#62;</a>
+            </li>
+            <li [ngClass]="isDisabledNext()">
+                <a class="page-link border-0" (click)="updatePage(numberOfPages)">&#62;&#62;</a>
+            </li>
+        </ul>
+    </nav>
+</div>
